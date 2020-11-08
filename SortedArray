@@ -1,0 +1,60 @@
+#include <iostream>
+
+using namespace std;
+
+int main(){
+
+    int array[1000], N, temp, p;
+
+    cout<<"Какая длина вашего массива?"<<endl;
+    cin >> N;
+
+    cout << "Введите данные массива:"<< endl;
+    for(int index = 0; index < N; index++){
+        cin >> array[index];
+    }
+    cout << "Изначальный массив: " << endl;
+    for(int index = 0; index < N; index++){
+        cout<<array[index]<<" ";
+    }
+
+    //Сортируем чётную часть
+    for(int index = 0; index < N; index++){
+        for( int j = index + 1; j < N; j++){
+            if(array[j] % 2 == 0){
+                temp = array[index];
+                array[index] = array[j];
+                array[j] = temp;
+                p = index;
+                break;
+            }
+        }
+    }
+    //Сортируем нечётную часть
+    for(int index = 0; index < p; index++){
+        for(int j = index + 1; j < p; j++){
+            if(array[index] > array[j]){
+                temp = array[index];
+                array[index] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+    for(int index = p+1; index < N; index++){
+        for(int j = N-1; j > index; j--){
+            if(array[index] < array[j]){
+                temp = array[index];
+                array[index] = array[j];
+                array[j] = temp;
+            }
+        }
+    }
+
+    cout<< endl << "Отсортированный массив: " << endl;
+    for(int index = 0; index < N; index++){
+        cout << array[index] << " ";
+    }
+
+    return 0;
+}
+
